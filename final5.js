@@ -212,3 +212,79 @@ if(e.target.classList.contains('heading')){
 heading.addEventListener('click', sayHello);
 
 //--------------------------------------------------//
+
+// EVENT FORM SUBMISSION
+
+// listen to submit event listener
+// prevent default
+// how to get a value
+
+const form = document.getElementById('form');
+const name = document.getElementById('name');
+const password = document.getElementById('password');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  console.log('form submitted');
+  console.log(name.value);
+  console.log(password.value);
+})
+
+//--------------------------------------------------//
+
+// web storage API - provided by browser
+// session storage, local storage - is going to keep the info between opening and closing browser (e-shop cart example (refresh page, items still in the basket))
+// setItem, getItem, removeItem, clear - does not keep the info (close browser, no data)
+
+// setItem, getItem
+//--------------------------------------------------//
+// localStorage.setItem('name', 'facundo');
+sessionStorage.setItem('name', 'facundo');
+// 'key', 'value' 
+localStorage.setItem('name', 'facundo');
+localStorage.setItem('friend', 'bobik');
+localStorage.setItem('job', "developer");
+localStorage.setItem('address', 'street 123');
+
+const name = localStorage.getItem('name');
+console.log(name);
+//--------------------------------------------------//
+
+// removeItem, clear
+//--------------------------------------------------//
+
+localStorage.removeItem('name');
+// check if name removed
+const anotherName = localStorage.getItem('name');
+console.log(anotherName);
+// all data cleared
+localStorage.clear();
+//--------------------------------------------------//
+// JSON.stringify(),JSON.parse()
+//--------------------------------------------------//
+const friends = ['facundo', 'bobik', 'bob'];
+
+// storing friends as array
+localStorage.setItem('friends', JSON.stringify(friends));
+
+// accessing the value
+const values = JSON.parse(localStorage.getItem('friends'));
+console.log(values[0]);
+//--------------------------------------------------//
+// check if have values in local storage; (actual no, so just apply check and add later on)
+let fruits;
+
+if(localStorage.getItem('fruits')){
+
+  fruits=JSON.parse(localStorage.getItem('fruits'));
+}
+else{
+  
+  fruits=[];
+}
+
+console.log(fruits);
+// adding items to local storage
+fruits.push('apple');
+fruits.push('orange');
+localStorage.setItem('fruits',JSON.stringify(fruits));
